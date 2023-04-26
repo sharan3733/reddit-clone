@@ -16,8 +16,18 @@ import {faker} from '@faker-js/faker'
         count++
        }
     }
-    if(req.body.task === 'generate_subreddits'){
 
+    if(req.body.task === 'generate_subreddits'){
+      let count = 0
+      while (count < 10) {
+        await prisma.subreddit.create({
+            data: {
+                name: faker.word.noun().toLowerCase(),
+                description: faker.lorem.paragraph(1).toLowerCase(),
+            },
+        })
+        count++
+      }
     }
     if(req.body.task === 'add_fake_content'){
 
