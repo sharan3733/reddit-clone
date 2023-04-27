@@ -6,9 +6,10 @@ import { getPosts } from 'lib/data.js'
 import prisma from 'lib/prisma'
 import timeago from '@/lib/timeago'
 import Link from 'next/link'
+import Post from './components/Post'
 
 
-const Post = ({ post }) => {
+/*const Post = ({ post }) => {
   return (
     <div className='flex flex-col p-10 mx-20 my-10 mb-4 bg-gray-200 border border-black border-3'>
       <div className='flex flex-shrink-0 pb-0 '>
@@ -30,7 +31,7 @@ const Post = ({ post }) => {
  </div>
     </div>
   )
-}
+}*/
 
 const Posts = ({ posts }) => {
   if (!posts) return null
@@ -55,9 +56,9 @@ export default function Index({ posts }) {
     router.push('/setup')
   }
 
-  if (session) {
-    router.push('/home')
-  }
+  //if (session) {
+   // router.push('/home')
+  //}
 
   return (
     <div>
@@ -65,10 +66,10 @@ export default function Index({ posts }) {
        <p>Reddit clone</p>
        <p className='grow'></p>
     
-       <Link
-        className='px-4 mb-1 font-bold border rounded-full flex-l'
-        href='/api/auth/signin'>
-        login </Link>
+       <a
+       className='flex-l border px-4 font-bold rounded-full mb-1'
+       href={session ? '/api/auth/signout': '/api/auth/signin'}>
+        {session ? 'logout' : 'login'}</a>
       </header>
       <Posts posts={posts} />
     </div>

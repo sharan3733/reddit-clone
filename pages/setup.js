@@ -10,7 +10,7 @@ export default function Setup() {
     const {data: session, status } = useSession()
     const loading = status === 'loading'
 
-    const [name, setName] = useState(' ')
+    const [name, setName] = useState()
 
     if(loading) return null
 
@@ -48,7 +48,7 @@ export default function Setup() {
             onChange={(e) => setName(e.target.value)}
             className="w-2/3 p-1 border"
             required
-            pattern="/w*"
+            pattern="\w*"
             title="Numbers or letters or_only"
             placeholder="Numbers or letters or _ only"
             minlength='5'
